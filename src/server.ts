@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { getDigipet } from "./digipet/model";
-import { hatchDigipet, walkDigipet, ignoreDigipet } from "./digipet/controller";
+import { hatchDigipet, walkDigipet, ignoreDigipet, feedDigipet} from "./digipet/controller";
 
 const app = express();
 
@@ -45,6 +45,22 @@ app.get("/digipet/ignore", (req, res) => {
     ignoreDigipet();
     res.json({
       message: "Your Digipet wants attention! Give it some!",
+      digipet: getDigipet(),
+    });
+  } else {
+    res.json({
+      message:
+        "You don't have a digipet! Try hatching one with /digipet/hatch",
+    });
+  }
+});
+
+app.get("/digipet/feed", (req, res) => {
+  // check the user has a digipet to walk
+  if (getDigipet()) {
+    feedDigipet();
+    res.json({
+      message: "Your Digipet wants food! Give it some!",
       digipet: getDigipet(),
     });
   } else {

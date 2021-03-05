@@ -12,7 +12,7 @@ import {
  * These update the underlying digipet by using the functions defined in model.ts
  */
 
-export function feedDigipet(): void {}
+
 
 export function hatchDigipet(): Digipet {
   if (getDigipet()) {
@@ -36,4 +36,8 @@ export function ignoreDigipet(): void {
   updateDigipetBounded("happiness", -10);
   updateDigipetBounded("nutrition", -10);
   updateDigipetBounded("discipline", -10);
+}
+
+export function feedDigipet(): void {
+  updateDigipetBounded("nutrition", 10);
 }
