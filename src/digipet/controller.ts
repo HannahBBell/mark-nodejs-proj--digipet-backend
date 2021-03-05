@@ -25,7 +25,7 @@ export function hatchDigipet(): Digipet {
   }
 }
 
-export function trainDigipet(): void {}
+export function trainDigipet(): void { }
 
 export function walkDigipet(): void {
   updateDigipetBounded("happiness", 10);
@@ -40,4 +40,16 @@ export function ignoreDigipet(): void {
 
 export function feedDigipet(): void {
   updateDigipetBounded("nutrition", 10);
+}
+
+export function rehomeDigipet(): undefined {
+  if (getDigipet()) {
+    //Now we want digipet to be deleted
+    const newDigipet = undefined
+    setDigipet(newDigipet);
+    return newDigipet;
+  } else {
+    //Message saying we dont have a digipet to rehome?
+    throw new Error("Can't rehome a digipet when you don't have one!");
+  }
 }
